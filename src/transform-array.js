@@ -17,8 +17,9 @@ export default function transform(arr) {
   if (!Array.isArray(arr))
     throw new Error("'arr' parameter must be an instance of the Array!");
   if (arr && arr.map) {
-    let updatedArr = [...arr].flat(4).reduce(
+    let updatedArr = [...arr].flat(6).reduce(
       (acc, ar, index) => {
+        if (Array.isArray(ar)) return transform(ar);
         if (ar === "--double-next") {
           acc[index + 1] && acc[index + 1] !== null
             ? acc.splice(index, 1, acc[index + 1])
