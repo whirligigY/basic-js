@@ -7,23 +7,33 @@ import { NotImplementedError } from "../extensions/index.js";
 export default {
   arrayValues: [],
   getLength() {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+    return this.arrayValues.length;
   },
-  addLink(value) {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+  addLink(valueLink) {
+    const valLink = String(valueLink);
+    this.arrayValues.push(valLink);
+    return this;
   },
-  removeLink(/* position */) {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+  removeLink(position) {
+    if (
+      this.arrayValues.length > position &&
+      position &&
+      !isNaN(position) &&
+      position > 0
+    ) {
+      this.arrayValues.splice(position - 1, 1);
+      return this;
+    }
+    this.arrayValues = [];
+    throw new Error("You can't remove incorrect link!");
   },
   reverseChain() {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+    this.arrayValues.reverse();
+    return this;
   },
   finishChain() {
-    throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+    const result = `( ${this.arrayValues.join(" )~~( ")} )`;
+    this.arrayValues = [];
+    return result;
   },
 };
